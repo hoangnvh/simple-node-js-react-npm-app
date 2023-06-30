@@ -12,7 +12,7 @@ Actions:
   DeploytoAmazonECS_24:
     Identifier: aws/ecs-deploy@v1.0.3 # Defines the action's properties.
     Configuration:
-      task-definition: task-demo
+      task-definition: task-demo:1
       service: container-demo
       cluster: cluster-demo
       region: ap-southeast-1
