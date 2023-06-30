@@ -1,0 +1,29 @@
+Name: Workflow_e769
+SchemaVersion: "1.0"
+
+# Optional - Set automatic triggers.
+Triggers:
+  - Type: Push
+    Branches:
+      - master
+
+# Required - Define action configurations.
+Actions:
+  DeploytoAmazonECS_24:
+    Identifier: aws/ecs-deploy@v1.0.3 # Defines the action's properties.
+    Configuration:
+      task-definition: deploy-to-prod-demo
+      service: container-demo
+      cluster: cluster-demo
+      region: ap-southeast-1
+    # Required; You can use an environment, AWS account connection, and role to access AWS resources.
+    Environment:
+      Connections:
+        - Role: CodeCatalystWorkflowDevelopmentRole-HoangNVH-Zigexn
+          Name: "871874472072"
+      Name: development
+    # Specifies the source and/or artifacts to pass to the action as input.
+    Inputs:
+      # Optional
+      Sources:
+        - WorkflowSource # This specifies that the action requires this Workflow as a source
